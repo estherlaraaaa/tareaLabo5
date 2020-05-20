@@ -26,6 +26,16 @@
 			<span th:errors="${estudiante.carrera}" style="color:  #E81505;"></span><br><br>
 		</div>
 		<input type="submit" value="Agregar estudiante">
+	</form><br>
+	
+	<form th:action="@{/deleteEstudiante}" th:method="post">
+
+		<div class="form-content">
+			
+			<label>Borrar estudiante por codigo:</label><br>
+			<input type="text" name="codigo"><input type="submit" value="Borrar estudiante">
+		</div>
+		
 	</form>
 	
 	<br>
