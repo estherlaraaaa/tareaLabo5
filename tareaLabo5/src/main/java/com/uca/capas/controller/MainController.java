@@ -114,7 +114,7 @@ public class MainController {
 		
 	}
 	
-	@PostMapping(value="/buscar", params="action=Borrar")
+	@PostMapping(value="/buscar", params="action=Delete")
 	public ModelAndView eliminarEstudiante(@RequestParam(value="codigo") int codigo) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -138,7 +138,7 @@ public class MainController {
 		
 	}
 	
-	@PostMapping(value="/buscar", params="action=Modificar")
+	@PostMapping(value="/buscar", params="action=Edit")
 	public ModelAndView redirectModificarEstudiante(@RequestParam(value="codigo") int codigo) {
 		
 		ModelAndView mav = new ModelAndView();
