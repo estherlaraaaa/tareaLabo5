@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html xmlms:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
 <title>Agregar Estudiantes</title>
 </head>
 <body>
 	<form th:action="@{/formEstudiante}" th:object="${estudiante}" method="post">
 
-		<h1>Ingresar Estudiante</h1>
-		<div class="form-content">
+		<h1 class="display-4">Ingresar Estudiante</h1>
+		
+		<div class="form group">
+		
 			<label>Nombre :</label><br>
-			<input type="text" th:field="${estudiante.nombre}"><br>
+			<input class="form-control" type="text" th:field="${estudiante.nombre}"><br>
 			<span th:errors="${estudiante.nombre}" style="color:  #E81505;"></span><br>
 			
 			<label>Apellido:</label><br>
-			<input type="text" th:field="${estudiante.apellido}"><br>
+			<input class="form-control" type="text" th:field="${estudiante.apellido}"><br>
 			<span th:errors="${estudiante.apellido}" style="color:  #E81505;"></span><br>
 			
 			<label>Carne:</label><br>
-			<input type="number" th:field="${estudiante.carne}"><br>
+			<input class="form-control" type="number" th:field="${estudiante.carne}"><br>
 			<span th:errors="${estudiante.carne}" style="color:  #E81505;"></span><br>
 			
 			<label>Carrera:</label><br>
-			<input type="text" th:field="${estudiante.carrera}"><br>
+			<input class="form-control" type="text" th:field="${estudiante.carrera}"><br>
 			<span th:errors="${estudiante.carrera}" style="color:  #E81505;"></span><br><br>
+			
 		</div>
-		<input type="submit" value="Agregar estudiante">
+		
+		<input type="submit" class="btn btn-success" value="Agregar estudiante">
+		
 	</form><br>
 	
 	<form th:action="@{/buscar}" th:method="post">
@@ -33,9 +39,9 @@
 		<div class="form-content">
 			
 			<label>Ingrese el codigo de estudiante::</label><br>
-			<input type="text" name="codigo">
-			<input type="submit" name="action" value="Delete">
-			<input type="submit" name="action" value="Edit">
+			<input class="form-control" type="text" name="codigo">
+			<input type="submit" class="btn btn-danger" name="action" value="Delete">
+			<input type="submit" class="btn btn-primary" name="action" value="Edit">
 		</div>
 		
 	</form><br>
@@ -45,13 +51,13 @@
 		<div class="form-content">
 			
 			<label>Ingrese la cadena por la que desea filtrar:</label><br>
-			<input type="text" name="nombre"><input type="submit" value="Filtrar">
+			<input type="text" name="nombre"><input class="btn btn-warning" type="submit" value="Filtrar">
 		</div>
 		
 	</form>
 	
 	<br>
-	<button><a href="/listado" style="text-decoration:none; color: #000;">Ver todos los estudiantes</a></button>
+	<br><button class="btn btn-info" onclick="window.location.href='/listado'">Ver todos los estudiantes</button>
 
 </body>
 </html></html>
