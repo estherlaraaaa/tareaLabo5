@@ -28,12 +28,24 @@
 		<input type="submit" value="Agregar estudiante">
 	</form><br>
 	
-	<form th:action="@{/deleteEstudiante}" th:method="post">
+	<form th:action="@{/buscar}" th:method="post">
 
 		<div class="form-content">
 			
-			<label>Borrar estudiante por codigo:</label><br>
-			<input type="text" name="codigo"><input type="submit" value="Borrar estudiante">
+			<label>Ingrese el codigo de estudiante::</label><br>
+			<input type="text" name="codigo">
+			<input type="submit" name="action" value="Borrar">
+			<input type="submit" name="action" value="Editar">
+		</div>
+		
+	</form><br>
+	
+	<form th:action="@{/filtrar}" th:method="post">
+
+		<div class="form-content">
+			
+			<label>Ingrese la cadena por la que desea filtrar:</label><br>
+			<input type="text" name="nombre"><input type="submit" value="Filtrar">
 		</div>
 		
 	</form>

@@ -9,34 +9,47 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.capas.dao.EstudianteDAO;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.repositories.EstudianteRepository;
 
 @Service
 public class EstudianteServiceImpl implements EstudianteService {
 	
 	@Autowired
-	private EstudianteDAO estudianteDAO;
+	private EstudianteRepository estudianteRepo;
+	//private EstudianteDAO estudianteDAO;
 
 	@Override
 	public List<Estudiante> findAll() throws DataAccessException {
-		
-		return estudianteDAO.findAll();
-		
+		//return estudianteRepo.findAll();
+		return estudianteRepo.mostrarTodo();
 	}
 
 	@Override
 	@Transactional
 	public void insert(Estudiante estudiante) throws DataAccessException {
-
-		estudianteDAO.insert(estudiante);
-		
+		estudianteRepo.save(estudiante);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Integer codigo) throws DataAccessException {
+		estudianteRepo.deleteById(codigo);
+	}
 
-		estudianteDAO.delete(codigo);
-		
+	@Override
+	public Estudiante findOne(Integer id) throws DataAccessException {
+		return estudianteRepo.getOne(id);
+	}
+	
+	@Override
+	public List<Estudiante> filtrarPor(String cadena) throws DataAccessException {
+		//return estudianteRepo.findByNombre(cadena);
+		return estudianteRepo.mostrarPorNombre(cadena);
+	}
+	
+	@Override
+	public List<Estudiante> empiezaCon(String cadena) throws DataAccessException {
+		return estudianteRepo.findByApellidoStartingWith(cadena);
 	}
 
 }

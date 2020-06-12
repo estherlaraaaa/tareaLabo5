@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,7 +80,41 @@ public class MainController {
 		
 	}
 	
-	@RequestMapping(value="/deleteEstudiante", method=RequestMethod.POST)
+	//TAREA LABO 7
+	
+	@RequestMapping("/modificarEstudiante")
+	public ModelAndView modificarEstudiante(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
+		
+		ModelAndView mav = new ModelAndView();
+		List<Estudiante> estudiantes = null;
+		
+		if(!result.hasErrors()) {
+			try {
+				
+				estudianteService.insert(estudiante);
+				estudiantes = estudianteService.findAll();
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			mav.addObject("estudiantes", estudiantes);
+			mav.setViewName("listado");
+			
+			
+		}else {
+			estudiante = new Estudiante();
+			mav.addObject("estudiante", estudiante);
+			mav.setViewName("index");
+		}
+		
+		
+		
+		return mav;
+		
+	}
+	
+	@PostMapping(value="/buscar", params="action=Borrar")
 	public ModelAndView eliminarEstudiante(@RequestParam(value="codigo") int codigo) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -97,6 +132,51 @@ public class MainController {
 		mav.addObject("estudiantes", estudiantes);
 
 		
+		mav.setViewName("listado");
+		
+		return mav;
+		
+	}
+	
+	@PostMapping(value="/buscar", params="action=Modificar")
+	public ModelAndView redirectModificarEstudiante(@RequestParam(value="codigo") int codigo) {
+		
+		ModelAndView mav = new ModelAndView();
+		Estudiante estudiante = null;
+
+		try {
+
+			estudiante = estudianteService.findOne(codigo);
+			mav.addObject("estudiante", estudiante);
+			mav.setViewName("modificarForm");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			estudiante = new Estudiante();			
+			mav.addObject("estudiante", estudiante);
+			mav.setViewName("index");
+		}
+
+		
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/filtrar", method=RequestMethod.POST)
+	public ModelAndView filtrar(@RequestParam(value="nombre") String cadena) {
+		
+		ModelAndView mav = new ModelAndView();
+		List<Estudiante> estudiantes = null;
+		try {
+			
+			estudiantes = estudianteService.filtrarPor(cadena);
+			//estudiantes = estudianteService.empiezaCon(cadena);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.addObject("estudiantes", estudiantes);
 		mav.setViewName("listado");
 		
 		return mav;

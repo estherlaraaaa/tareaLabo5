@@ -44,4 +44,9 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 		
 	}
 
+	@Override
+	public Estudiante findOne(Integer id) throws DataAccessException {
+		return entityManager.find(Estudiante.class, id);
+	}
+
 }

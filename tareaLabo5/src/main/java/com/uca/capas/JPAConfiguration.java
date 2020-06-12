@@ -11,9 +11,12 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.uca.capas.repositories")
 public class JPAConfiguration {
 	
 	@Bean
