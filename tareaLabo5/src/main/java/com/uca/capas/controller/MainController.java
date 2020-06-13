@@ -139,7 +139,7 @@ public class MainController {
 	}
 	
 	@PostMapping(value="/buscar", params="action=Edit")
-	public ModelAndView redirectModificarEstudiante(@RequestParam(value="codigo") int codigo) {
+	public ModelAndView estudianteModificado(@RequestParam(value="codigo") int codigo) {
 		
 		ModelAndView mav = new ModelAndView();
 		Estudiante estudiante = null;
